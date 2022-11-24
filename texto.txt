@@ -1,0 +1,25 @@
+public void update(Pessoa p) {
+        String query= "UPDATE buscapessoa SET nome = ?,Sobrenome = ?, CPF= ?, RG=? WHERE idPessoa = ?";
+        try {
+            PreparedStatement ps = Banco.getConexao().prepareStatement(query);
+            
+            ps.setString(1, p.getNome());
+            ps.setString(2, p.getSobrenome());
+            ps.setLong(3, p.getCpf());
+            ps.setString(4, p.getRG());
+            ps.setString(5, p.getEmail());
+            ps.setString(6, p.getDataNasc());
+            ps.setInt(7, p.getEndereco().getIDEndereco());
+            ps.setLong(8, p.getEndereco().getCEP());
+            ps.setInt(7, p.getEndereco().getIDEndereco());
+            
+            
+            
+            ps.setInt(12, p.getIDPessoa() );
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException se) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + se);
+        }
+    }
